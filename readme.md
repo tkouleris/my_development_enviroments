@@ -4,7 +4,7 @@
 This repository contains my development enviroments
 </p>
 
-### Nginx - Php - MySql
+### 1. Nginx - Php - MySql
 * Nginx
 * PHP latest
 * MySQL 5.7
