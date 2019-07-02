@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+
+  php:
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    container_name: dev_php
+    volumes:
+      - ./app/code:/var/www/app
+
+  mysql:
+    image: mysql:5.7
+    container_name: dev_mysql
+    restart: always
+    volumes:
+      - ./servers/db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "42333:3306"
+  nginx:
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+    container_name: dev_nginx
+    volumes:
+      - ./app/code:/var/www/app
+    links:
+      - php
+    ports:
+      - "80:80"
