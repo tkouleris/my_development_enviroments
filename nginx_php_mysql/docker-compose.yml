@@ -8,7 +8,7 @@ services:
       dockerfile: Dockerfile
     container_name: dev_php
     volumes:
-      - ./app/code:/var/www/app
+      - ./code:/var/www/html
     networks:
       dev_net:
 
@@ -34,7 +34,7 @@ services:
       dockerfile: Dockerfile
     container_name: dev_nginx
     volumes:
-      - ./app/code:/var/www/app
+      - ./code:/var/www/html
     links:
       - php
     ports:
