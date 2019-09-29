@@ -11,4 +11,4 @@ This repository contains my development enviroments
 #### How to start
 1. Run `docker-compose build`
 2. Run `docker-compose run -d nginx php mysql`
-3. Attach to container `docker -it --user=developer dev_php sh`
+3. Attach to container `docker exec -it --user=developer dev_php sh`
