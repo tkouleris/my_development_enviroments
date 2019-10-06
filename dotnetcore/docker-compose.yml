@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+
+  dotnetcore:
+    build:
+      context: ./docker/dotnetcore
+      dockerfile: Dockerfile
+    container_name: dev_dotnetcore
+    volumes:
+      - ./app:/home/developer/app
+    ports:
+      - "5000:5000"
+    networks:
+      dev_net:
+
+networks:
+  dev_net:

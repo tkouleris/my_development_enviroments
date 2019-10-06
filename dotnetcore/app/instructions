@@ -1,0 +1,2 @@
+-- To start the server
+dotnet watch run --no-resotre --urls http://0.0.0.0:5000
