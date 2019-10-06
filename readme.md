@@ -20,4 +20,4 @@ This repository contains my development enviroments
 2. Run 'docker-compose up -d dotnetcore'
 3. Attach to container 'docker exec -it --user=developer dev_dotnetcore sh
 4. Create project 'dotnet new mvc'
-5. Run server 'dotnet watch run --no-restore --urls http://0.0.0.0:5000
+5. Run server 'dotnet watch run --no-restore --urls http://0.0.0.0:5000'
