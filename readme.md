@@ -21,3 +21,12 @@ This repository contains my development enviroments
 3. Attach to container 'docker exec -it --user=developer dev_dotnetcore sh
 4. Create project 'dotnet new mvc'
 5. Run server 'dotnet watch run --no-restore --urls http://0.0.0.0:5000'
+
+
+### 3. Ubuntu with PHP 7.3 and Nginx
+* Nginx
+* PHP 7.3
+#### How to start
+1. Run `docker-compose build`
+2. Run `docker-compose up -d dev_ubuntu`
+3. Attach to container `docker exec -it dev_ubuntu /bin/bash`
