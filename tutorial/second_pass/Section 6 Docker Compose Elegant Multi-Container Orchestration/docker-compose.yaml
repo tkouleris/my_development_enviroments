@@ -2,15 +2,26 @@ version: "3.8"
 
 services:
   mongodb:
-    image: mongo
-    container_name: mongodb
+    image: mongo    
     volumes:
       - data:/data/db
-    ports:
-      - "27017:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: max
-      MONGO_INITDB_ROOT_PASSWORD: secret
-
+      - MONGO_INITDB_ROOT_USERNAME=max
+      - MONGO_INITDB_ROOT_PASSWORD=secret
+  backend:
+    image: backend
+    build: ./backend
+    ports:
+      - "80:80"
+    volumes:
+      - logs:/app/logs #named mount
+      - ./backend:/app #bind mount
+      - /app/node_modules #anonymous volume
+    environment:
+      - MONGODB_USERNAME=max
+      - MONGODB_PASSWORD=secret
+    depends_on:
+      - mongodb
 volumes:
   data:
+  logs:
