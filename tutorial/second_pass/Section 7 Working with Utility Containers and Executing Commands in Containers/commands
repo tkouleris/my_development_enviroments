@@ -1,0 +1,8 @@
+docker run -it -v 'E:\Code\Docker\my_development_enviroments\tutorial\second_pass\Section 7 Working with Utility Containers and Executing Commands in Containers:/app' mynpm init   
+docker run -it -v 'E:\Code\Docker\my_development_enviroments\tutorial\second_pass\Section 7 Working with Utility Containers and Executing Commands in Containers:/app' mynpm install express --save
+
+
+FINAL
+--------------
+docker-compose run --rm npm init
+docker-compose run --rm npm install
