@@ -1,6 +1,18 @@
-version: "3"
 services:
   flask:
     build: ./python/.
     ports:
       - 5000:5000
+  mysql:
+    image: mysql:5.7
+    container_name: dev_mysql
+    restart: always
+    volumes:
+      - ./servers/db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-myrootpassword}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-mydatabase}
+      MYSQL_USER: ${MYSQL_USER:-myuser}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-mypassword}
+    ports:
+      - "42333:3306"    
