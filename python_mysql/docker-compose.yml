@@ -3,6 +3,11 @@ services:
     build: ./python/.
     ports:
       - 5000:5000
+    environment:
+      MYSQL_HOST: ${MYSQL_HOST}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}      
   mysql:
     image: mysql:5.7
     container_name: dev_mysql
