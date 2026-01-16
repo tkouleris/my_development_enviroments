@@ -3,10 +3,12 @@ services:
     build: ./python/.
     ports:
       - 5000:5000
+    volumes:
+      - ./python/src:/app
     networks:
       dev_net:      
   mysql-server:
-    image: mysql:5.7
+    image: mysql:8.0.44-debian
     container_name: dev_mysql
     restart: always
     volumes:

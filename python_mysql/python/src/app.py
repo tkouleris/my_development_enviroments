@@ -8,9 +8,10 @@ from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
+load_dotenv()
 
 def create_app():
-    load_dotenv()
+
     app = Flask(__name__)
     
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
@@ -27,9 +28,12 @@ bcrypt = Bcrypt(app)
 
 
 @app.route("/")
-def hello_world():
-    conn = get_db_connection()
+def hello_world():    
     return "Hello World!"
 
 if __name__ == '__main__':
-    app.run()    
+    app.run(
+        host="0.0.0.0",
+        port=5000,
+        debug=True
+    ) 
