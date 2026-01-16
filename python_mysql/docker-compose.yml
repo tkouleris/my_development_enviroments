@@ -3,12 +3,9 @@ services:
     build: ./python/.
     ports:
       - 5000:5000
-    environment:
-      MYSQL_HOST: ${MYSQL_HOST}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}      
-  mysql:
+    networks:
+      dev_net:      
+  mysql-server:
     image: mysql:5.7
     container_name: dev_mysql
     restart: always
@@ -21,3 +18,7 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD:-mypassword}
     ports:
       - "42333:3306"    
+    networks:
+      dev_net:      
+networks:
+  dev_net:      

@@ -1,31 +1,35 @@
-from flask import Flask, jsonify
-import MySQLdb
+
+
 import os
 
-app = Flask(__name__)
+from dotenv import load_dotenv
+from flask import Flask
+from flask_bcrypt import Bcrypt
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
 
-DB_CONFIG = {
-    "host": os.getenv("MYSQL_HOST", "mysql"),
-    "user": os.getenv("MYSQL_USER", "myuser"),
-    "passwd": os.getenv("MYSQL_PASSWORD", "mypass"),
-    "db": os.getenv("MYSQL_DATABASE", "mydb"),
-    "port": int(os.getenv("MYSQL_PORT", 3306)),
-}
 
-def get_db_connection():
-    return MySQLdb.connect(
-        host=DB_CONFIG["host"],
-        user=DB_CONFIG["user"],
-        passwd=DB_CONFIG["passwd"],
-        db=DB_CONFIG["db"],
-        port=DB_CONFIG["port"],
-        charset="utf8mb4",
-    )
+def create_app():
+    load_dotenv()
+    app = Flask(__name__)
+    
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS')
+    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')    
+    return app
+
+
+app = create_app()
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+bcrypt = Bcrypt(app)
+
+
 
 @app.route("/")
 def hello_world():
     conn = get_db_connection()
     return "Hello World!"
 
-if __name__ == "__main__":
-    app.run(debug=True,host='0.0.0.0')
+if __name__ == '__main__':
+    app.run()    
