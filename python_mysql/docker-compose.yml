@@ -21,6 +21,10 @@ services:
     ports:
       - "42333:3306"    
     networks:
-      dev_net:      
+      dev_net:
+  pip:
+    build: ./pip/.    
+    volumes:
+      - ./python/src:/app    
 networks:
   dev_net:      
