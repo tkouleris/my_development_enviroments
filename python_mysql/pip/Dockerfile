@@ -8,4 +8,4 @@ RUN apt-get update && apt-get install -y \
     default-libmysqlclient-dev \
     && rm -rf /var/lib/apt/lists/*
 
-CMD ["pip"]
+ENTRYPOINT ["pip"]
