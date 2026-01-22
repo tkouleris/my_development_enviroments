@@ -5,8 +5,6 @@ services:
       - 5000:5000
     volumes:
       - ./python/src:/app
-    networks:
-      dev_net:      
   mysql-server:
     image: mysql:8.0.44-debian
     container_name: dev_mysql
@@ -19,12 +17,8 @@ services:
       MYSQL_USER: ${MYSQL_USER:-myuser}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD:-mypassword}
     ports:
-      - "42333:3306"    
-    networks:
-      dev_net:
+      - "42333:3306"
   pip:
     build: ./pip/.    
     volumes:
-      - ./python/src:/app    
-networks:
-  dev_net:      
+      - ./python/src:/app     
