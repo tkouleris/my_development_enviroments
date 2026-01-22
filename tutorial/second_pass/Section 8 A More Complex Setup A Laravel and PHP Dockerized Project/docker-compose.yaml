@@ -38,3 +38,5 @@ services:
     image: node:14
     working_dir: /var/www/html
     entrypoint: ["npm"]
+    volumes:
+      - ./src:/var/www/html
