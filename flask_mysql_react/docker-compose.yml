@@ -7,3 +7,10 @@ services:
       - 5000:5000
     volumes:
       - ./src/backend:/app
+  pip:
+    build:
+      context: ./dockerfiles
+      dockerfile: pip.dockerfile
+    volumes:
+      - ./src/backend:/app  
+
