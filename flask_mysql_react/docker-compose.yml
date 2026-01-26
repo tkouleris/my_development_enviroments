@@ -1,16 +1,13 @@
 services:
-  flask:
+  web:
     build:
-      context: ./dockerfiles
-      dockerfile: flask.dockerfile
+      context: ./backend
+      dockerfile: Dockerfile
     ports:
-      - 5000:5000
+      - "5000:5000"
     volumes:
-      - ./src/backend:/app
-  pip:
-    build:
-      context: ./dockerfiles
-      dockerfile: pip.dockerfile
-    volumes:
-      - ./src/backend:/app  
+      - ./backend:/app
+    environment:
+      - FLASK_ENV=development
+    command: flask run --host=0.0.0.0 --debug
 

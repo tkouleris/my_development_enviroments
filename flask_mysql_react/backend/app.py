@@ -2,7 +2,7 @@
 
 import os
 
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 from flask import Flask
 # from flask_bcrypt import Bcrypt
 # from flask_migrate import Migrate
