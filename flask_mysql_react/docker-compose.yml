@@ -11,7 +11,7 @@ services:
       - FLASK_ENV=development
     command: flask run --host=0.0.0.0 --debug
   db:
-    image: mysql
+    image: mysql:8.4
     volumes:
       - ./data/db:/var/lib/mysql
     restart: always
@@ -20,5 +20,11 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE:-mydatabase}
       MYSQL_USER: ${MYSQL_USER:-myuser}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD:-mypassword}
+  npm:
+    image: node:20
+    working_dir: /app
+    entrypoint: ["npm"]
+    volumes:
+      - ./frontend:/app/my-vue-app
 
 
