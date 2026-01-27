@@ -25,6 +25,6 @@ services:
     working_dir: /app
     entrypoint: ["npm"]
     volumes:
-      - ./frontend:/app/my-vue-app
+      - ./frontend:/app
 
 
