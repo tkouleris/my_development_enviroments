@@ -23,7 +23,7 @@ services:
   npm:
     image: node:20
     working_dir: /app
-    entrypoint: ["npm"]
+    # entrypoint: ["npm"]
     volumes:
       - ./frontend/my-vue-app:/app
     ports:

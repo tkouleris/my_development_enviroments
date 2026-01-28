@@ -3,10 +3,11 @@
 import os
 
 from dotenv import load_dotenv
-from flask import Flask
+from flask import Flask, request, jsonify
 from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
 
 load_dotenv()
 
@@ -21,6 +22,7 @@ def create_app():
 
 
 app = create_app()
+CORS(app)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 bcrypt = Bcrypt(app)
@@ -30,6 +32,11 @@ bcrypt = Bcrypt(app)
 @app.route("/")
 def hello_world():    
     return "Hello World!!!!"
+
+@app.route("/api/test", methods=["POST"])
+def test():
+    data = request.json
+    return jsonify({"received": data})
 
 if __name__ == '__main__':
     app.run(
