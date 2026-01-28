@@ -25,9 +25,9 @@ services:
     working_dir: /app
     entrypoint: ["npm"]
     volumes:
-      - ./frontend:/app
+      - ./frontend/my-vue-app:/app
     ports:
       - "5173:5173"
-    # command: npm run dev      
+    command: npm run dev      
 
 
