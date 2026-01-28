@@ -1,1 +1,5 @@
+docker compose exec web sh -c 'flask db init'
+docker compose exec web sh -c 'flask db migrate -m "Initial migration."'
+docker compose exec web sh -c 'flask db upgrade'
+
 docker compose exec web sh -c "pip freeze > requirements.txt"

@@ -9,6 +9,7 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 
+
 load_dotenv()
 
 def create_app():
@@ -24,6 +25,7 @@ def create_app():
 app = create_app()
 CORS(app)
 db = SQLAlchemy(app)
+import models
 migrate = Migrate(app, db)
 bcrypt = Bcrypt(app)
 
@@ -35,6 +37,13 @@ def hello_world():
 
 @app.route("/api/test", methods=["POST"])
 def test():
+    # from models import TestTable
+    # new_row = TestTable()
+
+    # db.session.add(new_row)
+    # db.session.commit()
+    
+    # row_count = TestTable.query.count()
     data = request.json
     return jsonify({"received": data})
 

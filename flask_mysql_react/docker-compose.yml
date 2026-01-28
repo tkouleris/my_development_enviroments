@@ -13,8 +13,7 @@ services:
   db:
     image: mysql:8.4
     volumes:
-      - ./data/db:/var/lib/mysql
-    restart: always
+      - /var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-myrootpassword}
       MYSQL_DATABASE: ${MYSQL_DATABASE:-mydatabase}
@@ -23,7 +22,6 @@ services:
   npm:
     image: node:20
     working_dir: /app
-    # entrypoint: ["npm"]
     volumes:
       - ./frontend/my-vue-app:/app
     ports:
