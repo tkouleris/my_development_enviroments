@@ -6,6 +6,23 @@ services:
     volumes: 
       - ./src:/var/www/html
       - ./nginx_conf/flask.conf:/etc/nginx/conf.d/default.conf:ro
+    profiles: ["prod"]
+  react_server:
+    image: 'nginx:stable-alpine'
+    ports: 
+      - '8000:80'
+    volumes: 
+      - ./src:/var/www/html
+      - ./nginx_conf/flask.conf:/etc/nginx/conf.d/default.conf:ro
+    profiles: ["prod"]    
+  npm_production:
+    image: node:20
+    working_dir: /app
+    volumes:
+      - ./frontend/my-vue-app:/app
+    ports:
+      - "5173:5173"
+    command: npm run build
     profiles: ["prod"]      
   flask:
     build:

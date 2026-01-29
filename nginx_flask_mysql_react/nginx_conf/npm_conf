@@ -1,0 +1,25 @@
+server {
+    listen 80;
+    server_name localhost;
+
+    root /var/www/react-app/build;
+    index index.html;
+
+    # Main React app (SPA fallback)
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # Static assets cache
+    location /static/ {
+        expires 30d;
+        add_header Cache-Control "public";
+    }
+
+    # Optional: gzip
+    gzip on;
+    gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+
+    error_log /var/log/nginx/react_error.log;
+    access_log /var/log/nginx/react_access.log;
+}
