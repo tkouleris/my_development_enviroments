@@ -54,7 +54,7 @@ export default function App() {
 
   return (
     <div style={{ padding: 40 }}>
-      <h1>React → Flask</h1>
+      <h1>React (front) → Flask (back)</h1>
 
       <button onClick={sendPost}>Send POST</button>
 
